@@ -27,8 +27,15 @@ bool UserInput (const string& input)
         return false;
     }
 
-    try {
+    for (char ch : input)
+    {
+        if (!isdigit(ch)){return false;}
+    }
+
+    try 
+    {
         int number = stoi(input);
+        if (number < 1){return false;}
     }
     catch (...) 
     {return false;}
@@ -42,7 +49,7 @@ void EnterDigit(int& varLink, const string& label) {
     cout << label << " = ";
     getline(cin, raw_input);
 
-    while (!UserInput(raw_input) || stoi(raw_input) < 1) {
+    while (!UserInput(raw_input)) {
         cout << "Некорректный ввод. Повторите.\n";
         cout << label << " = ";
         getline(cin, raw_input);
